@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:model="clr-namespace:DartCounter.Model"
+             xmlns:viewModels="clr-namespace:DartCounter.ViewModel"
+             xmlns:converters="clr-namespace:DartCounter.View.Converters"
+             BindingContext="{Binding GameViewModel, Source={StaticResource Locator}}"
+             d:DataContext="{d:DesignInstance viewModels:GameViewModel}"
+             x:Class="DartCounter.View.GameView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:MultiplikatorBackgroundColorConverter x:Key="MultiplikatorBackgroundColorConv"/>
+
+            <Style x:Key="MultiplikatorButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="DarkGray"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+
+            <Style x:Key="FieldButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Gray"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+            
+        </ResourceDictionary>
+
+        
+    </ContentPage.Resources>
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding CurrentPlayerName}" 
+                   Grid.Row="0" Grid.Column="0" />
+            <Label Text="{Binding CurrentPlayerPoints}"
+                   Grid.Row="0" Grid.Column="1" />
+        </Grid>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding CurrentPlayerDart1}" 
+                   Grid.Row="0" Grid.Column="0" />
+            <Label Text="{Binding CurrentPlayerDart2}" 
+                   Grid.Row="0" Grid.Column="1" />
+            <Label Text="{Binding CurrentPlayerDart3}" 
+                   Grid.Row="0" Grid.Column="2" />
+        </Grid>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource MultiplikatorButton}"
+                    Text="Double"
+                    Grid.Row="0" Grid.Column="0" 
+                    BackgroundColor="{Binding Multiplikator,
+                                    Converter={StaticResource MultiplikatorBackgroundColorConv},
+                                    ConverterParameter={x:Static model:Multiplikator.Double}}"
+                    Command="{Binding MultiplikatorCommand}"
+                    CommandParameter="{x:Static model:Multiplikator.Double}" />
+            <Button Style="{StaticResource MultiplikatorButton}"
+                    Text="Triple"
+                    Grid.Row="0" Grid.Column="1"
+                    BackgroundColor="{Binding Multiplikator,
+                                    Converter={StaticResource MultiplikatorBackgroundColorConv},
+                                    ConverterParameter={x:Static model:Multiplikator.Triple}}"
+                    Command="{Binding MultiplikatorCommand}" 
+                    CommandParameter="{x:Static model:Multiplikator.Triple}" />
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource FieldButton}"
+                    Text="1"
+                    Grid.Row="0" Grid.Column="0"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="1" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="2"
+                    Grid.Row="0" Grid.Column="1"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="2" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="3"
+                    Grid.Row="0" Grid.Column="2"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="3" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="4"
+                    Grid.Row="1" Grid.Column="0"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="4" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="5"
+                    Grid.Row="1" Grid.Column="1"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="5" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="6"
+                    Grid.Row="1" Grid.Column="2"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="6" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="7"
+                    Grid.Row="2" Grid.Column="0"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="7" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="8"
+                    Grid.Row="2" Grid.Column="1"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="8" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="9"
+                    Grid.Row="2" Grid.Column="2"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="9" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="10"
+                    Grid.Row="3" Grid.Column="0"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="10" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="11"
+                    Grid.Row="3" Grid.Column="1"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="11" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="12"
+                    Grid.Row="3" Grid.Column="2"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="12" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="13"
+                    Grid.Row="4" Grid.Column="0"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="13" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="14"
+                    Grid.Row="4" Grid.Column="1"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="14" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="15"
+                    Grid.Row="4" Grid.Column="2"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="15" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="16"
+                    Grid.Row="5" Grid.Column="0"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="16" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="17"
+                    Grid.Row="5" Grid.Column="1"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="17" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="18"
+                    Grid.Row="5" Grid.Column="2"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="18" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="19"
+                    Grid.Row="6" Grid.Column="0"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="19" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="20"
+                    Grid.Row="6" Grid.Column="1"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="20" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="25"
+                    Grid.Row="6" Grid.Column="2"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="25"
+                    IsVisible="{Binding IsBullSelectable}"/>
+            <Button Style="{StaticResource FieldButton}"
+                    Text="Missed"
+                    Grid.Row="7" Grid.Column="0"
+                    Command="{Binding FieldSelectCommand}" 
+                    CommandParameter="0" />
+            <Button Style="{StaticResource FieldButton}"
+                    Text="Undo"
+                    Grid.Row="7" Grid.Column="2"
+                    Command="{Binding UndoCommand}" />
+        </Grid>
+    </StackLayout>
+</ContentPage>

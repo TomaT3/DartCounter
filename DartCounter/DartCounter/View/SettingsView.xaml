@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:viewModels="clr-namespace:DartCounter.ViewModel"
+             xmlns:converters="clr-namespace:DartCounter.View.Converters"
+             xmlns:behaviors="clr-namespace:DartCounter.View.Behaviors"
+             BindingContext="{Binding SettingsViewModel, Source={StaticResource Locator}}"
+             d:DataContext="{d:DesignInstance viewModels:SettingsViewModel}"
+             x:Class="DartCounter.View.SettingsView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IntEnumConverter x:Key="IntEnumConv"/>
+            <converters:StringIntConverter x:Key="StringIntConv"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Anzahl Spieler:"
+                   HorizontalTextAlignment="End"  VerticalTextAlignment="Center"
+                   Grid.Row="0" Grid.Column="0" />
+            <Picker ItemsSource="{Binding PossibleNumberOfPlayers}"
+                    SelectedIndex="{Binding NumberOfPlayersSelectedIndex}"
+                    Grid.Row="0" Grid.Column="1"/>
+            <!--<Entry x:Name="entryNumberOfPlayers" 
+                   Text="{Binding NumberOfPlayers,
+                   Converter={StaticResource StringIntConv},
+                   Mode=Default}"
+                   Keyboard="Numeric"
+                   Grid.Row="0" Grid.Column="1">
+                <Entry.Behaviors>
+                    <behaviors:NumericValidationBehavior />
+                    <behaviors:ClearAllTextWhenEnterEntryBehavior />
+                </Entry.Behaviors>
+            </Entry>-->
+            <Label Text="Spiel:" HorizontalTextAlignment="End"  VerticalTextAlignment="Center"
+                   Grid.Row="1" Grid.Column="0" />
+            <Picker ItemsSource="{Binding PossibleStartNumbers}"
+                    SelectedIndex="{Binding StartNumberSelectedIndex}"
+                    Grid.Row="1" Grid.Column="1"/>
+            <Label Text="Spielmodus:" HorizontalTextAlignment="End"  VerticalTextAlignment="Center"
+                   Grid.Row="2" Grid.Column="0" />
+            <Picker ItemsSource="{Binding PlayModes}" 
+                    SelectedIndex="{Binding SelectedPlayMode, Converter={StaticResource IntEnumConv}}"
+                    Grid.Row="2" Grid.Column="1"/>
+        </Grid>
+        <Button Text="Spiel starten" 
+                BackgroundColor="Red"
+                IsEnabled="{Binding StartButtonEnabled}"
+                Command="{Binding StartGameButtonCommand}"/>
+    </StackLayout>
+</ContentPage>
